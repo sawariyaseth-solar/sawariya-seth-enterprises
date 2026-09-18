@@ -72,28 +72,196 @@
 
 <section class="hero">
   <div>
-    <h1>Bihar's Trusted Solar Partner</h1>
+    <h1>Bihar's, UP & MP Trusted Solar Partner</h1>
     <p>Get Solar Installed & Save Electricity Bills</p>
   </div>
 </section>
-<!-- Subsidy Section -->
+<!-- PM SURYA GHAR SUBSIDY CALCULATOR -->
 
 <section class="subsidy">
 
-<div class="container">
+  <div class="container">
 
-<h2>🏡 PM Surya Ghar Yojana</h2>
+    <h2>🏡 PM Surya Ghar Yojana</h2>
 
-<p class="subtext">
-₹78,000 तक सरकारी सब्सिडी* प्राप्त करें और अपने बिजली बिल को कम करें।
-</p>
+    <p class="subtext">
+      Central + State Subsidy की जानकारी
+    </p>
 
-<div class="subsidy-box">
+    <!-- Calculator Box -->
+    <div class="solar-calculator">
 
-<div class="item">
-<h3>💰 Subsidy</h3>
-<p>₹78,000 तक</p>
-</div>
+      <!-- State -->
+      <div class="calculator-field">
+
+        <label for="stateSelect">
+          📍 अपना राज्य चुनें
+        </label>
+
+        <select id="stateSelect">
+          <option value="Bihar">Bihar</option>
+          <option value="UP">Uttar Pradesh</option>
+        </select>
+
+      </div>
+
+
+      <!-- Capacity -->
+      <div class="calculator-field">
+
+        <label for="capacitySelect">
+          ☀️ Solar System Capacity
+        </label>
+
+        <select id="capacitySelect">
+          <option value="1">1 kW</option>
+          <option value="2">2 kW</option>
+          <option value="3">3 kW</option>
+        </select>
+
+      </div>
+
+
+      <!-- Result -->
+      <div class="subsidy-result">
+
+        <div class="result-card">
+          <span>🇮🇳</span>
+          <h3>Central Subsidy</h3>
+          <strong id="centralSubsidy">₹30,000</strong>
+        </div>
+
+
+        <div class="result-card">
+          <span>🏠</span>
+          <h3 id="stateTitle">Bihar State Subsidy</h3>
+          <strong id="stateSubsidy">₹10,000</strong>
+        </div>
+
+
+        <div class="result-card total-card">
+          <span>💰</span>
+          <h3>Total Subsidy</h3>
+          <strong id="totalSubsidy">₹40,000</strong>
+        </div>
+
+      </div>
+
+
+      <!-- Note -->
+      <p class="subsidy-note">
+        * Subsidy पात्रता, सिस्टम क्षमता और लागू सरकारी नियमों के अनुसार उपलब्ध होगी।
+        अंतिम राशि संबंधित सरकारी पोर्टल/डिस्कॉम के नियमों के अनुसार निर्धारित होगी।
+      </p>
+
+    </div>
+
+
+    <!-- Other Benefits -->
+    <div class="subsidy-box">
+
+      <div class="item">
+        <h3>⚡ Net Metering</h3>
+        <p>सरकारी सहायता उपलब्ध</p>
+      </div>
+
+      <div class="item">
+        <h3>📋 Free Survey</h3>
+        <p>नि:शुल्क साइट विज़िट</p>
+      </div>
+
+      <div class="item">
+        <h3>🏦 Loan</h3>
+        <p>आसान EMI सुविधा</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SUBSIDY CALCULATOR JAVASCRIPT -->
+
+<script>
+
+const centralSubsidy = {
+  1: 30000,
+  2: 60000,
+  3: 78000
+};
+
+
+const stateSubsidy = {
+
+  Bihar: {
+    name: "Bihar State Subsidy",
+    1: 10000,
+    2: 20000,
+    3: 20000
+  },
+
+  UP: {
+    name: "UP State Subsidy",
+    1: 15000,
+    2: 30000,
+    3: 30000
+  }
+
+};
+
+
+function calculateSubsidy() {
+
+  const state =
+    document.getElementById("stateSelect").value;
+
+  const capacity =
+    document.getElementById("capacitySelect").value;
+
+
+  const central =
+    centralSubsidy[capacity];
+
+  const stateAmount =
+    stateSubsidy[state][capacity];
+
+  const total =
+    central + stateAmount;
+
+
+  document.getElementById("centralSubsidy").textContent =
+    "₹" + central.toLocaleString("en-IN");
+
+
+  document.getElementById("stateTitle").textContent =
+    stateSubsidy[state].name;
+
+
+  document.getElementById("stateSubsidy").textContent =
+    "₹" + stateAmount.toLocaleString("en-IN");
+
+
+  document.getElementById("totalSubsidy").textContent =
+    "₹" + total.toLocaleString("en-IN");
+
+}
+
+
+document
+  .getElementById("stateSelect")
+  .addEventListener("change", calculateSubsidy);
+
+
+document
+  .getElementById("capacitySelect")
+  .addEventListener("change", calculateSubsidy);
+
+
+calculateSubsidy();
+
+</script>
 
 <div class="item">
 <h3>⚡ Net Metering</h3>
